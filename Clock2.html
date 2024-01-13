@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Analog Clock</title>
+</head>
+<body>
+
+
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+        <ul id="clock">
+          <li class="numbers"><span>1</span></li>
+          <li class="numbers"><span>2</span></li>
+          <li class="numbers"><span>3</span></li>
+          <li class="numbers"><span>4</span></li>
+          <li class="numbers"><span>5</span></li>
+          <li class="numbers"><span>6</span></li>
+          <li class="numbers"><span>7</span></li>
+          <li class="numbers"><span>8</span></li>
+          <li class="numbers"><span>9</span></li>
+          <li class="numbers"><span>10</span></li>
+          <li class="numbers"><span>11</span></li>
+          <li class="numbers"><span>12</span></li>
+        
+      </ul>
+      </div>
+      <a href="web2.html" class="btn">Back</a>
+
+    </div>
+
+
+  <style>
+    html {
+      background: white;
+      background-size: cover;
+      font-family: 'helvetica neue';
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-size: 2rem;
+      display: flex;
+      flex: 1;
+      min-height: 100vh;
+      align-items: center;
+      background: linear-gradient(to right, rgb(48, 16, 78), #702d03da);
+
+    }
+
+.numbers {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 1%;
+  text-align: center;
+  margin-left: -5rem;
+  margin-top: -2rem;
+}
+.numbers span {
+  display: block;
+  color: #dbe7fd;
+  font-size: 38px;
+  
+}
+.numbers:nth-child(1) {
+  transform: rotate(30deg);
+}
+.numbers:nth-child(1) span {
+  transform: rotate(-30deg);
+}
+.numbers:nth-child(2) {
+  transform: rotate(60deg);
+}
+.numbers:nth-child(2) span {
+  transform: rotate(-60deg);
+}
+.numbers:nth-child(3) {
+  transform: rotate(90deg);
+}
+.numbers:nth-child(3) span {
+  transform: rotate(-90deg);
+}
+.numbers:nth-child(4) {
+  transform: rotate(120deg);
+}
+.numbers:nth-child(4) span {
+  transform: rotate(-120deg);
+}
+.numbers:nth-child(5) {
+  transform: rotate(150deg);
+}
+.numbers:nth-child(5) span {
+  transform: rotate(-150deg);
+}
+.numbers:nth-child(6) {
+  transform: rotate(180deg);
+}
+.numbers:nth-child(6) span {
+  transform: rotate(-180deg);
+}
+.numbers:nth-child(7) {
+  transform: rotate(210deg);
+}
+.numbers:nth-child(7) span {
+  transform: rotate(-210deg);
+}
+.numbers:nth-child(8) {
+  transform: rotate(240deg);
+}
+.numbers:nth-child(8) span {
+  transform: rotate(-240deg);
+}
+.numbers:nth-child(9) {
+  transform: rotate(270deg);
+}
+.numbers:nth-child(9) span {
+  transform: rotate(-270deg);
+}
+.numbers:nth-child(10) {
+  transform: rotate(300deg);
+}
+.numbers:nth-child(10) span {
+  transform: rotate(-300deg);
+}
+.numbers:nth-child(11) {
+  transform: rotate(330deg);
+}
+.numbers:nth-child(11) span {
+  transform: rotate(-330deg);
+}
+
+    .clock {
+      width: 60rem;
+      height: 60rem;
+      border: 20px solid rgb(30, 1, 56);
+      border-radius: 50%;
+      margin: 50px auto;
+      position: relative;
+      padding: 2rem;
+      box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px); /* account for the height of the clock hands */
+    }
+    .hand {
+      width: 50%;
+      height: 6px;
+      background: black;
+      position: absolute;
+      top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.4s;
+    }
+    .second-hand{
+        background-color: rgba(51, 12, 135, 0.592);
+        transition:0.4s;
+        height: 3px;
+    }
+    .hour-hand{
+        transition:0.4s;
+    }
+    .min-hand{
+        transition:0.4s;
+        background-color: rgb(112, 0, 0);
+    }
+
+
+    a {
+            text-decoration: none;
+            margin-top: 10rem;
+            justify-content: center;
+            width: 10rem;
+            
+           
+        }
+
+        .btn{
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background: var(--main-color) ;
+            border-radius: 5rem;
+            box-shadow: 1rem var(--main-color) ;
+            font-size: 1.6rem;
+            color: white;
+            letter-spacing: .1rem;
+            font-weight: 600;
+            transition: .5s ease;
+            background: linear-gradient(to left, rgb(48, 16, 78), #934311da);
+        }
+
+
+        .btn:hover {
+            background: #7f5af0;
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #7f5af0,
+                        0 0 25px #7f5af0,
+                        0 0 50px #7f5af0,
+                        0 0 100px #7f5af0;
+
+        }
+  </style>
+
+  <script>
+
+    let minHand = document.querySelector('.min-hand');
+    let hourHand = document.querySelector('.hour-hand');
+    let secHand = document.querySelector('.second-hand');
+    function clock(){
+        let time = new Date();
+        let hrs = time.getHours();
+        let mins = time.getMinutes();
+        hrs = (((hrs*60)/12)*6)+90;   
+        hourHand.style.transform = `rotate(${hrs}deg)`;
+        
+        mins=(mins*6)+90;
+        minHand.style.transform = `rotate(${mins}deg)`;
+
+        let sec = time.getSeconds();
+        sec = (sec*6)+90;
+        secHand.style.transform = `rotate(${sec}deg)`;
+    }
+    setInterval(clock,1000)
+    clock();
+  </script>
+</body>
+</html>
+
+
+

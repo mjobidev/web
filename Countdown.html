@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="holiday count down calculator">
+    <title>Countdown</title>
+
+    <style>
+        body{
+            text-align: center;
+            margin-top: 25rem;
+            background: linear-gradient(to right, rgb(58, 5, 108), #57044b);
+            font-family: sans-serif, arial;
+            font-weight: bold;
+        }
+
+        h1{
+            color: rgb(214, 22, 172);
+            font-weight: bold;
+            font-size: 50px;
+            margin: 135px 0px 20px;
+        }
+
+        #clockdiv{
+            font-family: sans-serif;
+            color: #fff;
+            display: inline-block;
+            font-weight: 100;
+            text-align: center;
+            font-size: 55px;
+        }
+
+        #clockdiv > div{
+            padding: 50px;
+            border-radius: 40px;
+            background: linear-gradient(to right, rgb(24, 1, 46), #95077f);
+            display: inline-block;
+        }
+
+        #clockdiv div > span{
+            padding: 65px;
+            border-radius: 30px;
+            background: #000000c6;
+            display: inline-block;
+        }
+
+        .smalltext{
+            padding-top: 5px;
+            font-size: 25px;
+        }
+        
+        a {
+            text-decoration: none;
+            margin-top: 5rem;
+            justify-content: center;
+            
+           
+        }
+
+        .btn{
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background: var(--main-color) ;
+            border-radius: 5rem;
+            box-shadow: 1rem var(--main-color) ;
+            font-size: 1.6rem;
+            color: var(--second-bg-color) ;
+            letter-spacing: .1rem;
+            font-weight: 600;
+            transition: .5s ease;
+            background: linear-gradient(to right, rgb(120, 22, 121), #37054b);
+        }
+
+
+        .btn:hover {
+            background: #7f5af0;
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #7f5af0,
+                        0 0 25px #7f5af0,
+                        0 0 50px #7f5af0,
+                        0 0 100px #7f5af0;
+
+        }
+    </style>
+
+
+</head>
+<body>
+    <h1>Countdown Clock</h1>
+    <div id="clockdiv">
+        <div>
+            <span class="days"></span>
+            <div class="smalltext">Days</div>
+        </div>
+        <div>
+            <span class="hours"></span>
+            <div class="smalltext">Hours</div>
+        </div>
+        <div>
+            <span class="minutes"></span>
+            <div class="smalltext">Minutes</div>
+        </div>
+        <div>
+            <span class="seconds"></span>
+            <div class="smalltext">Seconds</div>
+        </div>
+        <a href="web2.html" class="btn">Back</a>
+
+    </div>
+    
+
+    <script>
+        function getTimeRemaining(endtime){
+    var t = Date.parse(endtime) - Date.parse(new Date()); // get total difference in seconds
+    var seconds = Math.floor((t / 1000) % 60); // convert total seconds to number of seconds by diving total seconds by number of seconds remaining after days,hours, and minutes are account for
+    var minutes = Math.floor((t / 1000 /60) % 60); // convert total seconds to number of minutes by diving total seconds by number of minutes remaining after days and hours are account for
+    var hours = Math.floor((t / (1000 * 60 *60)) % 24); // convert total seconds to number of hours by diving total seconds by number of hours remaining after days are accounted for 
+    var days = Math.floor(t / (1000 * 60 * 60 * 24)); // convert total seconds to number of days by dividing total seconds by number of days in seconds
+    debugger;
+    return {
+        'total' : t,
+        'days' : days,
+        'hours' : hours,
+        'minutes' : minutes,
+        'seconds' : seconds
+    };
+}
+
+function initializeClock(id, endtime){
+    var clock = document.getElementById(id); //first grab #clockdiv from div
+    var daysSpan = clock.querySelector('.days'); // grab the days span tag from the #clockdiv's div
+    var hoursSpan = clock.querySelector('.hours'); // grab the hours span tag from the #clockdiv's div
+    var minutesSpan = clock.querySelector('.minutes'); // grab the minutes span tag from the #clockdiv's div
+    var secondsSpan = clock.querySelector('.seconds'); // grab the seconds span tag from the #clockdiv's div
+
+    function updateClock(){
+        var t = getTimeRemaining(endtime); // calculate endtime date - current date and return a date object with days, hours, minutes, and seconds
+    
+        daysSpan.innerHTML = t.days; //display number of days
+        hoursSpan.innerHTML = ('0' + t.hours).slice(-2); //use negative to slice from end of string. when number is 024, the 0 will be sliced, return 24. When number is 09, slice will return 09. 
+        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    
+        if(t.total <=0){
+            clearInterval(timeinterval);
+        }
+    }
+
+    updateClock();
+    var timeinterval = setInterval(updateClock, 1000);
+}
+
+//initialize today's date and then add days, hours, minutes, and seconds to it.
+//set today as new Date
+//add number of days (in seconds)
+//parse the total number of seconds
+//convert the total number of seconds into the new date
+var deadline = new Date(Date.parse(new Date()) + 7 * 24 * 60 *60 *1000); 
+
+initializeClock('clockdiv', deadline); // grab needed HTML elements from the page, and add the date from which the timer begin its countdown
+    </script>
+</body>
+</html>
+
+
+

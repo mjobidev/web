@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arduino Project</title>
+  <link rel="stylesheet" href="game2.css">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <script src="game2.js"></script>
+ 
+</head>
+
+<body id="top">
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home">
+
+        <section class="section about" id="about">
+            <div class="container">
+    
+              <figure class="about-banner">
+    
+                <img src="Projects pics/Ai.png" width="800" height="652" 
+                  class="img-cover">
+    
+               
+    
+                
+    
+              </figure>
+    
+              <div class="about-content">
+    
+            
+    
+                <h2 class="h2 section-title">Arduino</h2>
+    
+                <p class="section-text">
+                  So, I had this cool idea for a small Arduino-powered robot. The main feature was a tiny screen on the front that displayed different emojis to represent the robot's "emotions," and there was an LED light underneath that added a bit of flair. The twist was that it had obstacle avoidance—if you tried to block it, the robot would cleverly maneuver in the opposite direction and continue its path.
+                  </p>
+    
+                <div class="button">
+                <a href="#portfolio" class="btn btn-primary blue">Project Overviews</a>
+                </div>
+    
+              </div>
+    
+            </div>
+          </section>
+    
+      </section>
+
+
+ 
+
+
+
+
+      <!-- 
+        - #PORTFOLIO
+      -->
+
+      <section class="section portfolio" id="portfolio">
+        <div class="container">
+
+          <p class="section-subtitle">Project Overviews</p>
+
+          <h2 class="h2 section-title">Arduino Project</h2>
+
+
+
+
+        
+            <div class="game1-text">
+              <p>To bring this concept to life, I started coding the Arduino. In the code, I defined the behavior for the emojis based on the robot's sensors. For obstacle avoidance, I integrated logic that utilized infrared or ultrasonic sensors to detect obstacles. If an obstacle was detected, the robot would dynamically display an "avoidance" emoji and swiftly change direction. The LED light would also change colors to match the current emotional state. I ensured the code was efficient and responsive to provide a delightful user experience.</p>
+
+                <p>‍</p>
+                <p>‍</p>
+            </div>
+
+            <div class="game2-text">
+
+              <p>Once the initial code was ready, it was time for testing. I carefully observed how the robot reacted to obstacles, making adjustments to sensor thresholds and reaction times. This phase involved a bit of trial and error—adjusting the speed, fine-tuning the obstacle detection, and refining the emoji display. LEDs were programmed to smoothly transition between colors to convey different moods. Testing was crucial to ensure the robot's movements were both interactive and entertaining.
+              </p>
+              <p>‍</p>
+              <p>‍</p>
+          </div>
+
+          <div class="game5-text">
+              <p>With the code polished and the hardware components assembled, I uploaded the final program to the Arduino and let the robot loose. It roamed around, changing emojis based on its "emotions," and the LED light added a captivating visual element. When someone attempted to block its path, the robot skillfully maneuvered away, surprising and amusing everyone around. The implementation showcased how coding and creativity could blend seamlessly, turning a simple robot into an expressive and engaging companion.
+              </p>
+              <p>‍</p>
+          </div>
+
+  
+  
+
+            <div class="section">
+                <div class="container">
+                    
+                    <div class="vid">
+                        <h3 class="display-3">Check It Out</h3>
+                    </div>
+
+
+                    <div class="video-container">
+                      <video width="640" height="360" controls>
+                          <!-- Replace "your-video.mp4" with the actual path to your video file -->
+                          <source src="Ai2.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                      </video>
+                  </div>
+              
+                    
+                              
+
+
+                    
+                           
+                                <div class="l-container">
+                                    <div class="b-game-card">
+                                      <div class="b-game-card__cover" style="background-image: url(Ai1.png);"></div>
+                                    </div>
+                                    <div class="b-game-card">
+                                      <div class="b-game-card__cover" style="background-image: url(Ai2.png);"></div>
+                                    </div>
+                                    <div class="b-game-card">
+                                      <div class="b-game-card__cover" style="background-image: url(Ai3.png);"></div>
+                                    </div>
+                                    
+                                </div>
+
+                              
+
+                                <br><br>
+
+                                <h1 class="heading">.Other Projects. <a href="index.html" class="btn btn-primary blue">Return Home</a></h1>
+
+                                <style>
+                                  .heading {
+                                    position: relative;
+                                    font-size: 5rem;
+                                    color: rgb(0, 81, 255);
+                                  }
+                                  .heading a{
+                                    position: relative;
+                                    font-size: 5rem;
+                                    right: -17rem;
+                                    color: rgb(0, 81, 255);
+                                  }
+
+                                  .heading::after {
+                                    content: '';
+                                    position: absolute;
+                                    left: 0;
+                                    right: 9rem; /* Add this line to stretch the line across the full width */
+                                    bottom: -5px;
+                                    width: 100%;
+                                    height: 2px;
+                                    background-color: rgb(255, 255, 255);
+                                  }
+
+                                  .vid h3{
+                                    color: rgba(77, 28, 133, 0.9);
+                                    text-align: center;
+                                    font-size: 10rem;
+                                    opacity: 40%;
+                                    margin-bottom: 9rem;
+                                  }
+                                  .l-container {
+                                    display: grid;
+                                    grid-template-columns: repeat(4, 1fr);
+                                    grid-gap: 30px;
+                                    width: 100%;
+                                    max-width: 1200px;
+                                    padding: 30px;
+                                    margin-top: 6rem;
+                                  }
+                                </style>
+                                
+                                <br><br>
+
+                                <div class="button">
+
+                                  <a href="web2.html" class="btn btn-primary blue">Web Dev.</a>
+                                  <a href="game2.html" class="btn btn-primary blue">Game Dev.</a>
+                                  <a href="python2.html" class="btn btn-primary blue">Python</a>
+                                  <a href="fashion2.html" class="btn btn-primary blue">Fashion</a>
+                                  <a href="graphics2.html" class="btn btn-primary blue">Graphics</a>
+
+                                </div>
+                </div>
+
+            
+            
+
+            
+
+            
+
+        </div>
+    </section>
+
+
+
+
+
+      
+
+     
+       
+
+    </article>
+  </main>
+
+
+
+
+
+
+  <footer class="footer">
+    <div class="footer-text">
+    <a href="#" class="logo">Maryjane.Portfolio</a>
+    
+    <p>Copyright &copy; 2023 Maryjane Obi 2023 | All rights reserved.</p>
+    </div>
+
+    <div class="footer-icon">
+        <a href="index.html"><i class='bx bxs-home-heart' ></i></a>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+

@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Convert</title>
+    <link rel="icon" type="image/png" href="./public/favicon.png" />
+    <link rel="stylesheet" href="./public/style.css" />
+
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="HandheldFriendly" content="true" />
+
+    <style>
+ * {
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+html {
+  background: linear-gradient(to right, rgb(17, 4, 30), #21055e);
+
+}
+
+body {
+  min-width: 100%;
+  margin-top: 9rem;
+  
+}
+
+
+main {
+  width: 945px;
+  margin: 10px auto;
+  padding: 0 0 54px 0;
+}
+
+nav {
+  width: 20%;
+  margin: 0;
+  padding: 10px 0;
+  float: left;
+  display: block;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0 10px 0 0;
+}
+
+nav li {
+  list-style-type: none;
+  margin: 0;
+  padding: 5px;
+}
+
+nav li:hover {
+  background: #7f5af0;
+    color: #fff;
+    border-radius: 1px;
+    box-shadow: 0 0 5px #7f5af0,
+                0 0 25px #7f5af0,
+                0 0 50px #7f5af0,
+                0 0 100px #7f5af0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
+.page-heading{
+    text-align: center;
+    font-weight: bold;
+    font-size: 5rem;
+    color: #8a006f;
+}
+.selected {
+  background-color: #580787;
+}
+
+#optionQuantity {
+  width: 100%;
+  height: 46px;
+  margin: 20px 0 0 0;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 10px 10px 10px 10px;
+  border-width: 1px;
+  display: none;
+}
+
+#converterSpace {
+  padding: 10px 0 54px 0;
+  width: 100%;
+  float: none;
+}
+
+#converterSpace h2 {
+  margin: 0;
+}
+
+.converter {
+  display: flex;
+  margin: 20px 0;
+}
+
+.input {
+  flex-basis: 70%;
+}
+
+input {
+  width: 100%;
+  height: 46px;
+  margin: 0;
+  padding: 5px;
+  font-size: 28px;
+  border-radius: 10px 0 0 10px;
+  border-width: 1px;
+  background-color: #a8a4b0ca;
+}
+
+.option {
+  flex-basis: 30%;
+}
+
+.converter select {
+  width: 100%;
+  height: 46px;
+  margin: 0;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 0 10px 10px 0;
+  border-width: 1px;
+}
+
+#formula {
+  margin: 0;
+  padding: 10px 0;
+}
+
+#formula p {
+  margin: 10px 0;
+}
+
+
+
+.buttonGroup {
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+button {
+  cursor: pointer;
+  font-size: 20px;
+  width: 150px;
+  height: 46px;
+  margin: 0 5px;
+  border-radius: 10px;
+  border-color: black;
+  border-width: 1px;
+  background-color: #ffa259;
+}
+
+.buttonCollumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonCollumn button {
+  width: 310px;
+  margin: 5px auto;
+}
+
+#liffLoginButton {
+  background-color: #91bd3a;
+}
+
+#liffLogoutButton {
+  background-color: #fa4252;
+}
+
+#code-block {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+#statusMessage {
+  position: relative;
+  top: 40px;
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.hidden {
+  display: none;
+}
+
+#liffData {
+  display: none;
+}
+
+@media (max-width: 963.9px) {
+  main {
+    width: 98%;
+    margin: 10px auto;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    display: none;
+  }
+  #optionQuantity {
+    display: block;
+  }
+  #converterSpace {
+    width: 100%;
+    float: none;
+  }
+}
+
+@media (max-width: 1575px) {
+
+#converterSpace {
+  width: 70%;
+  padding: 10px 0 54px 0;
+  float: left;
+  }
+}
+
+@media (max-width: 1440px) {
+
+  #converterSpace {
+    width: 40%;
+    padding: 10px 0 54px 0;
+    float: left;
+    }
+}
+
+@media (max-width: 768px) {
+
+#converterSpace {
+  width: 20%;
+  padding: 10px 0 54px 0;
+  float: left;
+  }
+}
+
+@media (max-width: 1024px) {
+
+#converterSpace {
+  width: 40%;
+  padding: 10px 0 54px 0;
+  float: left;
+  }
+}
+
+
+
+.converter-box {
+    position: center;
+    top: 50%;
+    size: 7rem;
+    left: 50%;
+    width: 70%;
+    height: 100%;
+    padding: 100px;
+    transform: translate(25%, 20%);
+    background: rgba(24, 20, 20, 0.987);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    background: linear-gradient(#212121, #212121) padding-box,
+                linear-gradient(145deg, transparent 35%,#e600ff, #02abee) border-box;
+    border: 2px solid transparent;
+    
+    font-size: 16px;
+    font-family: inherit;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    margin-bottom: 200px;
+    
+  }
+
+  a {
+    text-decoration: none;
+    margin-left: 5rem;
+    
+
+}
+
+.btn{
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    width: 10rem;
+    background: var(--main-color) ;
+    border-radius: 5rem;
+    box-shadow: 1rem var(--main-color) ;
+    font-size: 1.6rem;
+    color: var(--second-bg-color) ;
+    letter-spacing: .1rem;
+    font-weight: 600;
+    transition: .5s ease;
+    background: linear-gradient(to right, rgb(120, 22, 121), #37054b);
+}
+
+
+.btn:hover {
+    background: #7f5af0;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #7f5af0,
+                0 0 25px #7f5af0,
+                0 0 50px #7f5af0,
+                0 0 100px #7f5af0;
+
+}
+
+    </style>
+  </head>
+
+  <body>
+
+    <h1 class="page-heading">Converter</h1>
+    <div class="converter-box">
+    <main>
+      <nav>
+        <ul id="listQuantity">
+          <a href="#" onclick="loadQuantity('length'); return false;">
+            <li id="item0" class="" value="length">Length</li>
+          </a>
+          <a href="#" onclick="loadQuantity('mass'); return false;">
+            <li id="item1" class="" value="mass">Mass</li>
+          </a>
+          <a href="#" onclick="loadQuantity('time'); return false;">
+            <li id="item2" class="" value="time">Time</li>
+          </a>
+          <a href="#" onclick="loadQuantity('temperature'); return false;">
+            <li id="item3" class="" value="temperature">Temperature</li>
+          </a>
+          <a href="#" onclick="loadQuantity('angle'); return false;">
+            <li id="item4" class="" value="angle">Angle</li>
+          </a>
+          <a href="#" onclick="loadQuantity('area'); return false;">
+            <li id="item5" class="" value="area">Area</li>
+          </a>
+          <a href="#" onclick="loadQuantity('volume'); return false;">
+            <li id="item6" class="" value="volume">Volume</li>
+          </a>
+          <a href="#" onclick="loadQuantity('digital-storage'); return false;">
+            <li id="item7" class="" value="digital-storage">Digital Storage</li>
+          </a>
+        </ul>
+      </nav>
+      <div id="converterSpace">
+        <div>
+          <h2 id="quantityTitle"></h2>
+        </div>
+        <div>
+          <select id="optionQuantity" onchange="loadQuantity(this.value)">
+            <option value="length">Length</option>
+            <option value="mass">Mass</option>
+            <option value="time">Time</option>
+            <option value="temperature">Temperature</option>
+            <option value="angle">Angle</option>
+            <option value="area">Area</option>
+            <option value="volume">Volume</option>
+            <option value="digital-storage">Digital Storage</option>
+          </select>
+        </div>
+        <div id="converterTop" class="converter">
+          <div class="input">
+            <input id="inputTop" type="number" value="1" oninput="convert();" />
+          </div>
+          <div class="option">
+            <select id="optionTop" onchange="convert();"></select>
+          </div>
+        </div>
+        <div id="converterBottom" class="converter">
+          <div class="input">
+            <input
+              id="inputBottom"
+              type="number"
+              value
+              oninput="convertBack();"
+            />
+          </div>
+          <div class="option">
+            <select id="optionBottom" onchange="convert();"></select>
+          </div>
+        </div>
+      </div>
+    </main>
+    <a href="web2.html" class="btn">Back</a>
+    </div>
+
+  </body>
+  <script>
+
+let listQuantities;
+let optionQuantity;
+let inputTop;
+let inputBottom;
+let optionTop;
+let optionBottom;
+let quantity;
+let defQuantityId = 'length';
+let quantities = [{
+        name: 'Length',
+        id: 'length',
+        defUnitIndex: 1,
+        units: [
+            ["kilometer", 1000],
+            ["meter", 1],
+            ["centimeter", 0.01],
+            ["millimeter", 0.001],
+            ["micrometer", 1e-6],
+            ["nanometer", 1e-9],
+            ["picometer", 1e-12],
+            ["mile", 1609.344],
+            ["nautical mile", 1852],
+            ["yard", 0.9144],
+            ["feet", 0.3048],
+            ["inch", 0.0254]
+        ]
+    },
+    {
+        name: 'Mass',
+        id: 'mass',
+        defUnitIndex: 0,
+        units: [
+            ["kilogram", 1],
+            ["gram", 1e-3],
+            ["milligram", 1e-6],
+            ["nanogram", 1e-12],
+            ["ton", 1000],
+            ["quintal", 100],
+            ["pound", 0.45359237]
+        ]
+    },
+    {
+        name: 'Time',
+        id: 'time',
+        defUnitIndex: 7,
+        units: [
+            ["millennium", 31536000000],
+            ["century", 3153600000],
+            ["decade", 315360000],
+            ["windu", 252288000],
+            ["year (365 days)", 31536000],
+            ["month (30 days)", 2628000],
+            ["week", 604800],
+            ["day", 86400],
+            ["hour", 3600],
+            ["minute", 60],
+            ["second", 1],
+            ["millisecond", 1e-3],
+            ["microsecond", 1e-6],
+            ["nanosecond", 1e-9],
+            ["picosecond", 1e-12],
+        ]
+    },
+    {
+        name: 'Temperature',
+        id: 'temperature',
+        defUnitIndex: 0,
+        units: [
+            ["Celsius", 'value + 273.15', 'value - 273.15'],
+            ["Fahrenheit", '5/9 * (value + 459.67)', '9/5 * value - 459.67'],
+            ["Kelvin", 1],
+            ["Rankine", '5/9 * value', '9/5 * value'],
+            ["Reaumur", '5/4 * value + 273.15', '4/5 * (value - 273.15)']
+        ]
+    },
+    {
+        name: 'Angle',
+        id: 'angle',
+        defUnitIndex: 0,
+        units: [
+            ["degree", 'value/360', 'value*360'],
+            ["radian", 'value / (2 * Math.PI)', 'value * 2 * Math.PI'],
+            ["revolution", 1],
+            ["quadrant", 0.25],
+            ["minutes", 'value/(360*60)', 'value * (360*60)'],
+            ["seconds", 'value/(360*3600)', 'value * (360*3600)']
+        ]
+    },
+    {
+        name: 'Area',
+        id: 'area',
+        defUnitIndex: 1,
+        units: [
+            ["square kilometer", 1e6],
+            ["square meter", 1],
+            ["square centimeter", 1e-4],
+            ["square millimeter", 1e-6],
+            ["hectare", 1e4],
+            ["square mile", 2589988.110336],
+            ["square yard", 0.83612736],
+            ["square feet", 0.09290304],
+            ["square inch", 0.00064516]
+        ]
+    },
+    {
+        name: 'Volume',
+        id: 'volume',
+        defUnitIndex: 5,
+        units: [
+            ["cubic kilometer", 1e12],
+            ["cubic meter kubik", 1e3],
+            ["cubic decimete kubik", 1],
+            ["cubic milimeter kubik", 1e-6],
+            ["kiloliter", 1e3],
+            ["liter", 1],
+            ["milliliter", 1e-3],
+            ["cubic yard kubik", 764.554857984],
+            ["cubic mil kubik", 4.168181825e12],
+            ["cubic inci kubik", 0.016387064],
+            ["cubic kaki kubik", 28.316846592],
+            ["gallon", 3.785411784],
+            ["cup", 0.2365882365],
+            ["tablespoon", 0.01478676478125],
+            ["teaspoon", 0.00492892159375]
+        ]
+    },
+    {
+        name: 'Digital Storage',
+        id: 'digital-storage',
+        defUnitIndex: 1,
+        units: [
+            ["bits", 0.125],
+            ["bytes", 1],
+            ["kilobits", 128],
+            ["kilobytes", 1024],
+            ["megabits", 131072],
+            ["megabytes", 1048576],
+            ["gigabits", 134217728],
+            ["gigabytes", 1073741824],
+            ["terabits", 137438953472],
+            ["terabytes", 1099511627776],
+            ["petabits", 140737488355328],
+            ["petabytes", 1125899906842624],
+            ["exabits", 144115188075855872],
+            ["exabytes", 1152921504606846976]
+        ]
+    },
+]
+
+function getQuantityById(id) {
+    for (let i = 0; i < quantities.length; i++) {
+        if (id === quantities[i].id)
+            return quantities[i];
+    }
+}
+
+function onInitPage() {
+    listQuantities = document.getElementById('listQuantities');
+    optionQuantity = document.getElementById('optionQuantity');
+    inputTop = document.getElementById('inputTop');
+    inputBottom = document.getElementById('inputBottom');
+    optionTop = document.getElementById('optionTop');
+    optionBottom = document.getElementById('optionBottom');
+
+    let startQuantity;
+    if (!startQuantity) {
+        let id = localStorageGetDefault('lastQuantityID', defQuantityId);
+        startQuantity = getQuantityById(id);
+    }
+    if (!startQuantity) {
+        startQuantity = getQuantityById(defQuantityId);
+    }
+    loadQuantity(startQuantity.id);
+}
+
+function loadQuantity(quantityId) {
+    quantity = getQuantityById(quantityId);
+    localStorage.setItem('lastQuantityId', quantityId);
+
+    optionTop.innerHTML = '';
+    optionBottom.innerHTML = '';
+    let unitOptions = '';
+    for (let i = 0; i < quantity.units.length; i++) {
+        let title = quantity.units[i][0];
+        unitOptions += '<option>' + title + '</option>';
+    }
+    optionTop.innerHTML = unitOptions;
+    optionBottom.innerHTML = unitOptions;
+
+    document.getElementById('quantityTitle').innerHTML = quantity.name + ' Converter';
+
+    loadUnits();
+
+    optionQuantity.value = quantityId;
+    let itemId = '';
+    for (let i = 0; i < quantities.length; i++) {
+        itemId = 'item' + i;
+        if (quantities[i].id === quantityId) document.getElementById(itemId).className = 'selected';
+        else document.getElementById(itemId).className = '';
+    }
+
+    convert();
+}
+
+function findUnitIndexByName(name) {
+    for (let i = 0; i < quantity.units.length; i++) {
+        if (quantity.units[i][0] === name) return i;
+    }
+    return -1;
+}
+
+function loadUnits() {
+    optionTop.selectedIndex = findUnitIndexByName(localStorageGetDefault('top: ' + quantity.name, ''));
+    if (optionTop.selectedIndex === -1) optionTop.selectedIndex = quantity.defUnitIndex;
+    optionBottom.selectedIndex = findUnitIndexByName(localStorageGetDefault('bottom: ' + quantity.name, ''));
+    if (optionBottom.selectedIndex === -1) optionBottom.selectedIndex = quantity.defUnitIndex + 1;
+}
+
+document.addEventListener("DOMContentLoaded", onInitPage, false);
+
+function localStorageGetDefault(name, defaultValue) {
+    let value = localStorage.getItem(name);
+    return (value !== null) ? value : defaultValue;
+}
+
+function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function convertInternal(topUnitIndex, value, bottomUnitIndex, inputResult) {
+
+    let topUnitFactor = quantity.units[topUnitIndex][1];
+    let bottomUnitFactor = quantity.units[bottomUnitIndex][1];
+
+    if (isNumber(topUnitFactor)) {
+        value = value * topUnitFactor;
+    } else {
+        value = eval(topUnitFactor);
+    }
+
+    if (isNumber(bottomUnitFactor)) {
+        value = value / bottomUnitFactor;
+    } else {
+        value = eval(quantity.units[bottomUnitIndex][2]);
+    }
+
+    inputResult.value = value.toFixed(4);
+}
+
+function convert() {
+    let value = parseFloat(inputTop.value);
+    if (isNaN(value)) {
+        inputBottom.value = '';
+    } else {
+        convertInternal(optionTop.selectedIndex, value, optionBottom.selectedIndex, inputBottom)
+        localStorage.setItem('input' + quantity.name, value.toString());
+    }
+}
+
+function convertBack() {
+    let value = parseFloat(inputBottom.value);
+
+    if (isNaN(value)) {
+        inputTop.value = '';
+    } else {
+        let topUnitIndex = optionBottom.selectedIndex;
+        let bottomUnitIndex = optionTop.selectedIndex;
+
+        convertInternal(topUnitIndex, value, bottomUnitIndex, inputTop);
+    }
+}
+  </script>
+</html>
+
+
+
+
+

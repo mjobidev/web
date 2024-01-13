@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ball game</title>
+   
+    <style>
+
+html{
+    background: linear-gradient(to right, rgb(17, 4, 30), #21055e);
+
+}
+body{
+    padding: 0;
+    margin: auto;
+    margin-left: 65rem;
+    margin-top: 20rem;
+
+}
+
+.page-heading{
+    margin-left: 2rem;
+    font-weight: bold;
+    font-size: 8rem;
+    color: #8a006f;
+}
+
+p{
+    margin-left: 6rem;
+    margin-top: -5rem;
+    font-size: 2rem;
+    color: #8a0009;
+}
+#game{
+    width: 40rem;
+    height: 500px;
+    border: 1px solid transparent;
+    overflow: hidden;
+    background: linear-gradient(rgb(8, 8, 226), rgb(110, 54, 54));
+    
+}
+#character{
+    width: 20px;
+    height: 20px;
+    background-color: rgb(149, 0, 255);
+    border-radius: 50%;
+    position: relative;
+    top: 400px;
+    left: 190px;
+    z-index: 1000000;
+}
+.block{
+    width: 40rem;
+    height: 20px;
+    background-color: rgb(59, 5, 93);
+    position: relative;
+    top: 100px;
+    margin-top: -20px;
+}
+.hole{
+    width: 40px;
+    height: 20px;
+    background-color: rgb(8, 8, 226);
+    position: relative;
+    top: 100px;
+    margin-top: -20px;
+}
+
+a {
+    text-decoration: none;
+    margin-left: 15rem;
+    margin-top: 3rem;
+    
+    
+
+}
+
+.btn{
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    width: 4rem;
+    background: var(--main-color) ;
+    border-radius: 5rem;
+    box-shadow: 1rem var(--main-color) ;
+    font-size: 1.6rem;
+    color: var(--second-bg-color) ;
+    letter-spacing: .1rem;
+    font-weight: 600;
+    transition: .5s ease;
+    background: linear-gradient(to right, rgb(41, 69, 197), #3b094f);
+}
+
+
+.btn:hover {
+    background: #7f5af0;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #7f5af0,
+                0 0 25px #7f5af0,
+                0 0 50px #7f5af0,
+                0 0 100px #7f5af0;
+
+}
+
+@media (max-width: 2000px) {
+    body{
+    padding: 0;
+    margin: auto;
+    margin-left: 50rem;
+    margin-top: 20rem;
+}    
+}
+
+@media (max-width: 1750px) {
+    body{
+    padding: 0;
+    margin: auto;
+    margin-left: 45rem;
+    margin-top: 20rem;
+    
+}    
+}
+
+@media (max-width: 1440px) {
+    body{
+    padding: 0;
+    margin: auto;
+    margin-left: 25rem;
+    margin-top: 20rem;
+    
+}    
+}
+
+@media (max-width: 1024px) {
+    body{
+    padding: 0;
+    margin: auto;
+    margin-left: 10rem;
+    margin-top: 20rem;
+
+    }    
+}
+
+    </style>
+</head>
+<body>
+
+    <h1 class="page-heading">Ball Game</h1>
+    <p>Enter the blue holes to get points.</p>
+<div id="game">
+    <div id="character"></div>
+</div>
+<a href="web2.html" class="btn">Back</a>
+    
+</body>
+<script>
+    var character = document.getElementById("character");
+var game = document.getElementById("game");
+var interval;
+var both = 0;
+var counter = 0;
+var currentBlocks = [];
+
+function moveLeft(){
+    var left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
+    if(left>0){
+        character.style.left = left - 2 + "px";
+    }
+}
+function moveRight(){
+    var left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
+    if(left<380){
+        character.style.left = left + 2 + "px";
+    }
+}
+document.addEventListener("keydown", event => {
+    if(both==0){
+        both++;
+        if(event.key==="ArrowLeft"){
+            interval = setInterval(moveLeft, 1);
+        }
+        if(event.key==="ArrowRight"){
+            interval = setInterval(moveRight, 1);
+        }
+    }
+});
+document.addEventListener("keyup", event => {
+    clearInterval(interval);
+    both=0;
+});
+
+var blocks = setInterval(function(){
+    var blockLast = document.getElementById("block"+(counter-1));
+    var holeLast = document.getElementById("hole"+(counter-1));
+    if(counter>0){
+        var blockLastTop = parseInt(window.getComputedStyle(blockLast).getPropertyValue("top"));
+        var holeLastTop = parseInt(window.getComputedStyle(holeLast).getPropertyValue("top"));
+    }
+    if(blockLastTop<400||counter==0){
+        var block = document.createElement("div");
+        var hole = document.createElement("div");
+        block.setAttribute("class", "block");
+        hole.setAttribute("class", "hole");
+        block.setAttribute("id", "block"+counter);
+        hole.setAttribute("id", "hole"+counter);
+        block.style.top = blockLastTop + 100 + "px";
+        hole.style.top = holeLastTop + 100 + "px";
+        var random = Math.floor(Math.random() * 360);
+        hole.style.left = random + "px";
+        game.appendChild(block);
+        game.appendChild(hole);
+        currentBlocks.push(counter);
+        counter++;
+    }
+    var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
+    var characterLeft = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
+    var drop = 0;
+    if(characterTop <= 0){
+        alert("OOPSS Game over!. You Scored: "+(counter-9));
+        clearInterval(blocks);
+        location.reload();
+    }
+    for(var i = 0; i < currentBlocks.length;i++){
+        let current = currentBlocks[i];
+        let iblock = document.getElementById("block"+current);
+        let ihole = document.getElementById("hole"+current);
+        let iblockTop = parseFloat(window.getComputedStyle(iblock).getPropertyValue("top"));
+        let iholeLeft = parseFloat(window.getComputedStyle(ihole).getPropertyValue("left"));
+        iblock.style.top = iblockTop - 0.5 + "px";
+        ihole.style.top = iblockTop - 0.5 + "px";
+        if(iblockTop < -20){
+            currentBlocks.shift();
+            iblock.remove();
+            ihole.remove();
+        }
+        if(iblockTop-20<characterTop && iblockTop>characterTop){
+            drop++;
+            if(iholeLeft<=characterLeft && iholeLeft+20>=characterLeft){
+                drop = 0;
+            }
+        }
+    }
+    if(drop==0){
+        if(characterTop < 480){
+            character.style.top = characterTop + 2 + "px";
+        }
+    }else{
+        character.style.top = characterTop - 0.5 + "px";
+    }
+},1);
+</script>
+</html>
+
